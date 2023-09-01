@@ -1,7 +1,6 @@
 
-import Head from 'next/head'
 import "@/app/globals.css"
-import Image from 'next/image'
+
 
 
 

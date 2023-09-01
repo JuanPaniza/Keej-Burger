@@ -1,12 +1,69 @@
 import { Formik, ErrorMessage, Field, Form } from "formik";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 function ForgetPassword() {
+  const [alert, setAlert] = useState({});
+  const [alertok, setAlertok] = useState({});
 
+  function ocultarAlerta() {
+    setAlert({})
+  }
+
+  useEffect(() => {
+    if (alert) {
+      const timeout = setTimeout(() => {
+        ocultarAlerta();
+      }, 3000);
+      return () => clearTimeout(timeout);
+    }
+  }, [alert]);
   return (
     <div className=" w-full px-4 pt-12 pb-3 sm:px-6 sm:py-16 lg:w-1/2 lg:px-6 lg:py-24 ">
-      <Formik>
-        {() => (
+      <Formik
+       initialValues={{
+        email: "",
+      }}
+      validate={(valores) => {
+        let errores = {};
+        // validacion email
+        if (!valores.email) {
+          errores.email = "Es necesario que indiques tu email electrónico.";
+        } else if (
+          !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(
+            valores.email
+          )
+        ) {
+          errores.email =
+            "Este email electrónico no es válido. Asegúrate de que tenga un formato como este: ejemplo@email.com";
+        }
+        
+        return errores; // Devolver el objeto de errores
+      }}
+      onSubmit={async (valores) => {
+       const {email} = valores
+        try {
+          const response = await fetch("http://localhost:8080/api/users/forget-password", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email}),
+            }
+          );
+          const data = await response.json();
+          if (response.ok) {
+            setAlertok({ msg: data.msg})
+            valores.email="";
+          } else {
+            setAlert({ msg: data.msg})
+          }
+        } catch (error) {
+        }
+      }}
+      
+      >
+        {({ errors, touched }) => (
           <Form className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8 bg-white">
             <div className="mx-auto max-w-lg text-center">
               <h2 className="text-2xl font-bold sm:text-3xl">
@@ -21,17 +78,21 @@ function ForgetPassword() {
               </p>
             </div>
             <div>
-              <p className="text-gray-700 mb-2 font-bold">Dirección de correo electrónico</p>
+              {alertok.msg && <p className="text-GreenKeej-100 text-center mb-2 font-bold">{alertok.msg}</p>}
               <label htmlFor="correo" className="sr-only">
                 Correo electrónico
               </label>
 
               <div className="relative">
-                <Field
-                  name="correo"
-                  id="correo"
+              <Field
+                  name="email"
+                  id="email"
                   type="email"
-                  className="w-full border rounded-lg p-4 pe-12 text-lg shadow-md  focus:border-gray-400 "
+                  className={`w-full border rounded-lg p-4 pe-12 text-lg  ${
+                    errors.email && touched.email 
+                      ? "border-red-400"
+                      : "shadow-md  focus:border-gray-400 "
+                  }`}
                   placeholder="Correo electrónico"
                 />
 
@@ -52,6 +113,49 @@ function ForgetPassword() {
                   </svg>
                 </span>
               </div>
+              {errors.email ? (
+                <ErrorMessage
+                  name="email"
+                  component={() => (
+                    <div className=" text-red-500 flex gap-1 text-left text-xs pt-2">
+                      <svg
+                        role="img"
+                        height="16"
+                        width="16"
+                        aria-hidden="true"
+                        aria-label="Error:"
+                        fill="red"
+                        viewBox="0 0 16 16"
+                        data-encore-id="icon"
+                      >
+                        <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.25-5v7h1.5V3h-1.5zm0 8.526v1.5h1.5v-1.5h-1.5z"></path>
+                      </svg>
+                      {errors.email}
+                    </div>
+                  )}
+                />
+              ) : alert.msg ? (
+                <div className=" text-red-500 flex gap-1 text-left text-xs pt-2">
+                  {" "}
+                  <svg
+                    role="img"
+                    height="16"
+                    width="16"
+                    aria-hidden="true"
+                    aria-label="Error:"
+                    fill="red"
+                    viewBox="0 0 16 16"
+                    data-encore-id="icon"
+                  >
+                    <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.25-5v7h1.5V3h-1.5zm0 8.526v1.5h1.5v-1.5h-1.5z"></path>
+                  </svg>{" "}
+                  <p>
+                    {alert.msg} 
+                  </p>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
             <button
               type="submit"

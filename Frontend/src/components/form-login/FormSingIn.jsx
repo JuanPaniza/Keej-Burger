@@ -1,12 +1,27 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Formik, ErrorMessage, Field, Form } from "formik";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 function FormSingIn() {
+  const router = useRouter();
   const [clickView, setClickView] = useState("");
-  const [existeUsuario, setExisteUsuario] = useState({});
-  const [cambioInputEmail, setCambioInputEmail] = useState(null);
+  const [alert, setAlert] = useState({});
+
+
+  function ocultarAlerta() {
+    setAlert({})
+  }
+
+  useEffect(() => {
+    if (alert) {
+      const timeout = setTimeout(() => {
+        ocultarAlerta();
+      }, 3000);
+      return () => clearTimeout(timeout);
+    }
+  }, [alert]);
 
   function handleonClickView(e) {
     const dataValue = e.target.dataset.value;
@@ -32,11 +47,6 @@ function FormSingIn() {
         validate={(valores) => {
           let errores = {};
           // validacion email
-          if (existeUsuario.error && valores.email !== "") {
-            setCambioInputEmail(true);
-          } else {
-            setCambioInputEmail(false);
-          }
           if (!valores.email) {
             errores.email = "Es necesario que indiques tu email electrónico.";
           } else if (
@@ -62,7 +72,7 @@ function FormSingIn() {
         }}
         onSubmit={async (valores) => {
           const { email, password } = valores;
-          console.log(email, password)
+    
 
           try {
             const response = await fetch("http://localhost:8080/api/users/login", {
@@ -75,17 +85,11 @@ function FormSingIn() {
             );
             const data = await response.json();
             if (response.status === 200) {
-              // La respuesta es exitosa (código de estado 200)
               console.log("Usuario autenticado:", data);
-            } else if (response.status === 403) {
-              // Acceso prohibido (código de estado 403)
-              console.log("Acceso prohibido:", data.msg);
-            } else if (response.status === 404) {
-              // No encontrado (código de estado 404)
-              console.log("No se encontró el email electrónico:", data.msg);
+              router.push("/profile")
             } else {
               // Otra respuesta de error inesperada
-              console.log("Error inesperado:", data.msg);
+              setAlert({ msg: data.msg, error: true });
             }
           } catch (error) {
             console.log(error)
@@ -94,16 +98,11 @@ function FormSingIn() {
       >
         {({ errors, touched }) => (
           <Form className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8 bg-white">
-            {existeUsuario.msg === "Esta cuenta no ha sido confirmada." ? (
-              <p className="text-center text-lg font-medium text-red-600">
-                {existeUsuario.msg}
-              </p>
-            ) : (
+            
               <p className="text-center text-lg font-medium text-gray-600">
                 Iniciar sesión en su cuenta
               </p>
-            )}
-
+           
             <div>
               <label htmlFor="email" className="sr-only">
                 email electrónico
@@ -115,11 +114,11 @@ function FormSingIn() {
                   id="email"
                   type="email"
                   className={`w-full border rounded-lg p-4 pe-12 text-lg  ${
-                    errors.email && touched.email
+                    errors.email && touched.email 
                       ? "border-red-400"
                       : "shadow-md  focus:border-gray-400 "
                   }`}
-                  placeholder="email electrónico"
+                  placeholder="Correo electrónico"
                 />
 
                 <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
@@ -160,7 +159,7 @@ function FormSingIn() {
                     </div>
                   )}
                 />
-              ) : existeUsuario.error && cambioInputEmail === false ? (
+              ) : alert.msg !== "El password es incorrecto." && alert.error ? (
                 <div className=" text-red-500 flex gap-1 text-left text-xs pt-2">
                   {" "}
                   <svg
@@ -176,12 +175,7 @@ function FormSingIn() {
                     <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.25-5v7h1.5V3h-1.5zm0 8.526v1.5h1.5v-1.5h-1.5z"></path>
                   </svg>{" "}
                   <p>
-                    {existeUsuario.msg}{" "}
-                    {
-                      <Link href="/es/registro" className="underline">
-                        Registrate{" "}
-                      </Link>
-                    }
+                    {alert.msg} 
                   </p>
                 </div>
               ) : (
@@ -200,9 +194,9 @@ function FormSingIn() {
                   name="password"
                   type={clickView === "passwordSingIn" ? "text" : "password"}
                   onPaste={(event) => event.preventDefault()}
-                  placeholder="password"
+                  placeholder="Contraseña"
                   className={`w-full border rounded-lg p-4 pe-12 text-lg mb-2  ${
-                    errors.password && touched.password
+                    errors.password && touched.password 
                       ? "border-red-400"
                       : "shadow-md  focus:border-gray-400 "
                   }`}
@@ -260,29 +254,52 @@ function FormSingIn() {
                   )}
                 </Link>
               </div>
-              <ErrorMessage
-                name="password"
-                component={() => (
-                  <div className=" text-red-500 flex gap-1 text-left text-xs pt-2">
-                    <svg
-                      role="img"
-                      height="16"
-                      width="16"
-                      aria-hidden="true"
-                      aria-label="Error:"
-                      fill="red"
-                      viewBox="0 0 16 16"
-                      data-encore-id="icon"
-                    >
-                      <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.25-5v7h1.5V3h-1.5zm0 8.526v1.5h1.5v-1.5h-1.5z"></path>
-                    </svg>
-                    {errors.password}
-                  </div>
-                )}
-              />
+              {errors.password ? (
+                <ErrorMessage
+                  name="password"
+                  component={() => (
+                    <div className=" text-red-500 flex gap-1 text-left text-xs pt-1 ">
+                      <svg
+                        role="img"
+                        height="16"
+                        width="16"
+                        aria-hidden="true"
+                        aria-label="Error:"
+                        fill="red"
+                        viewBox="0 0 16 16"
+                        data-encore-id="icon"
+                      >
+                        <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.25-5v7h1.5V3h-1.5zm0 8.526v1.5h1.5v-1.5h-1.5z"></path>
+                      </svg>
+                      {errors.password}
+                    </div>
+                  )}
+                />
+              ) : alert.msg === "El password es incorrecto."? (
+                <div className=" text-red-500 flex gap-1 text-left text-xs pt-1 mb-5">
+                  {" "}
+                  <svg
+                    role="img"
+                    height="16"
+                    width="16"
+                    aria-hidden="true"
+                    aria-label="Error:"
+                    fill="red"
+                    viewBox="0 0 16 16"
+                    data-encore-id="icon"
+                  >
+                    <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.25-5v7h1.5V3h-1.5zm0 8.526v1.5h1.5v-1.5h-1.5z"></path>
+                  </svg>{" "}
+                  <p>
+                    {alert.msg} 
+                  </p>
+                </div>
+              ) : (
+                ""
+              )}
               <Link
                 href="/es/forgetPassword"
-                className="hover:underline mt-12 font-semibold text-sm text-gray-600"
+                className="hover:underline mt-16 font-semibold text-sm text-gray-600 "
               >
                 ¿Olvidaste tu password?
               </Link>

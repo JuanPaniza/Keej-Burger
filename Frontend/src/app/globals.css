@@ -8,6 +8,8 @@
         background: rgb(255,255,255);
     background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(247,236,205,1) 33%, rgba(247,236,205,1) 100%);
     overflow-y:auto;
+    
+   
 }
   
 }
@@ -17,12 +19,13 @@
         background: rgb(255,255,255);
     background: linear-gradient(180deg, rgba(255,255,255,1) 30%, rgba(247,236,205,1) 50%, rgba(247,236,205,1) 100%);
     overflow-y:auto;
+   
 }
   
 }
 
 .bg-principal {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/bg-principal.png");
+    background-image:  url("/keej-burger-fondo-web.jpg");
     width: 100%;
     min-height: 100vh;
     background-size: cover;
@@ -36,9 +39,8 @@
     .bg-principal {
     
   
-        background-size: 570px;
-       
-        background-position: left, center;
+        background-size: 950px;
+        background-position:  center;
         position: absolute;
         
       }
@@ -75,7 +77,6 @@
       }
     
       .grid-enlace-login{
-    
         grid-column: 2/5;
         grid-row: 4/5;
         margin-left: 1.25rem;
@@ -87,4 +88,148 @@
         margin-left: 1.25rem;
         
       }
+}
+
+
+
+.hover-fill-black:hover path {
+  fill: black;
+  transition: fill 0.3s ease; 
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Color oscuro con 50% de transparencia */
+  z-index: 9999; /* Asegura que el fondo esté por encima de otros elementos */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* bg admi */
+
+.bg-container {
+  background: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%237e382d" fill-opacity="1" d="M0,64L60,64C120,64,240,64,360,101.3C480,139,600,213,720,213.3C840,213,960,139,1080,128C1200,117,1320,171,1380,197.3L1440,224L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>') center/cover no-repeat ;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-attachment: fixed;
+ 
+ 
+}
+
+/* bg menu*/
+
+.bg-menu{
+    height: 1000px;
+}
+
+
+/* transicion menu admi */
+
+.menu-item {
+  
+  opacity: 0;
+  transform: translateY(20px); /* Puedes ajustar esta propiedad para la animación deseada */
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.menu-item.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* modal transicion */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleUp {
+  from {
+    transform: scale(0.8);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+ 
+/* abrir modal*/
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+
+
+/* cerrar modal*/
+
+.fadeOut {
+  animation: fadeOut 0.3s ease-in forwards;
+}
+
+.scaleDown {
+  animation: scaleDown 0.3s ease-in forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    pointer-events: none; /* Evitar que el usuario interactúe con el modal mientras se desvanece */
+  }
+}
+
+@keyframes scaleDown {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.8);
+  }
+}
+
+/* Ocultar la barra de desplazamiento vertical */
+body::-webkit-scrollbar {
+  width: 0.1em;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+/* Estilo opcional para el pulgar de la barra de desplazamiento */
+body::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo opcional para el pulgar de la barra de desplazamiento cuando está activo */
+body::-webkit-scrollbar-thumb:active {
+  background-color: rgba(0, 0, 0, 0.4);
 }
