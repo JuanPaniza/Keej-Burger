@@ -1,10 +1,10 @@
 import User from "../models/UsersModels.js";
 import generateId from "../helpers/generateId.js";
 import generateJWT from "../helpers/generateJWT.js";
+import { emailSingUp, emailForgetPassword } from "../helpers/email.js";
 const SingUp = async (req, res) => {
   // Evitar registros duplicados
   const { email } = req.body;
-  console.log(email)
   const existsUser = await User.findOne({ email }); // esto busca si ya existe el email
 
   if (existsUser) {
@@ -18,6 +18,12 @@ const SingUp = async (req, res) => {
     user.token = generateId();
     await user.save();
 
+    // Enviar el email de confirmacion
+    emailSingUp({
+      email: user.email,
+      name: user.name,
+      token: user.token,
+    });
     res.json({
       msg: "Usuario Creado Correctamente, Revisa tu Email para confirmar tu cuenta.",
     });
@@ -26,7 +32,7 @@ const SingUp = async (req, res) => {
 
 const authenticate = async (req, res) => {
   const { email, password } = req.body;
-  console.log(email, password)
+
   const user = await User.findOne({ email });
   if (!user) {
     return res
@@ -68,22 +74,78 @@ const confirm = async (req, res) => {
     userConfirm.confirm = true;
     userConfirm.token = "";
     await userConfirm.save();
-    res.json({ msg: "Usuario Confirmado Correctamente" });
+    res.json({ msg: "Usuario Confirmado Correctamente." });
     
   } catch (error) {
     console.log(error)
   }
 };
-const forgotPassword = async (req, res) => {};
-const checkToken = async (req, res) => {};
-const newPassword = async (req, res) => {};
-const profile = async (req, res) => {};
+const forgetPassword = async (req, res) => {
+  const { email} = req.body;
+
+  const user = await User.findOne({ email });
+  if (!user) {
+    return res
+      .status(404)
+      .json({ msg: "Este correo electrónico no está conectado a una cuenta." });
+  }
+
+  try {
+    user.token = generateId();
+    await user.save();
+
+    // Enviar el email
+    emailForgetPassword ({
+      email: user.email,
+      name: user.name,
+      token: user.token,
+    });
+    
+    res.json({ msg: "Hemos enviado un email con las instrucciones" });
+  } catch (error) {
+  }
+
+};
+const checkToken = async (req, res) => {
+  const { token } = req.params;
+  const tokenValidate = await User.findOne({ token });
+  if (tokenValidate) {
+    res.json({ msg: "Token válido" });
+  } else {
+    return res.status(404).json({ msg: "Token no válido." });
+  }
+
+};
+const newPassword = async (req, res) => {
+  const { token } = req.params;
+  const { password } = req.body;
+
+  const user = await User.findOne({ token });
+
+  if (user) {
+    user.password = password;
+    user.token = "";
+    try {
+      await user.save();
+      res.json({ msg: "Contraseña modificada correctamente." });
+    } catch (error) {
+
+    }
+  } else {
+    return res.status(404).json({ msg: "Token no válido" });
+  }
+};
+const profile = async (req, res) => {
+  const { user } = req;
+
+  res.json(user);
+};
 
 export {
   SingUp,
   authenticate,
   confirm,
-  forgotPassword,
+  forgetPassword,
   checkToken,
   newPassword,
   profile,
