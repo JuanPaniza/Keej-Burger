@@ -1,5 +1,4 @@
 import Menu from "../models/MenuModels.js";
-import generateId from "../helpers/generateId.js";
 import dotenv from "dotenv";
 import { v2 as cloudinary } from "cloudinary";
 dotenv.config();
@@ -43,25 +42,60 @@ const getMenus = async (req, res) => {
   }
 };
 
-const putImage = async (req, res) => {
- 
+const deleteSaucer = async (req, res) => {
   try {
-  } catch (error) {}
-};
-const confirm = async (req, res) => {
-  
-  try {
-    
+    const platilloId = req.params.id; // Obtener el ID del platillo desde los parámetros de la URL
+
+    const deletedPlatillo = await Menu.findByIdAndDelete(platilloId); // Buscar y eliminar el platillo por su ID
+
+    if (!deletedPlatillo) {
+      // Si el platillo no se encontró, devuelve un error 404
+      return res.status(404).json({ error: 'Platillo no encontrado' });
+    }
+
+    // Si se eliminó con éxito, devuelve una respuesta exitosa
+    res.status(200).json({ message: 'Platillo eliminado con éxito' });
   } catch (error) {
-    console.log(error)
+    // Si ocurre un error durante la eliminación, devuelve un error 500
+    res.status(500).json({ error: 'Error al eliminar el platillo' });
   }
 };
-const   deleteImage = async (req, res) => {
-  
 
+
+
+const putImage = async (req, res) => {
+    try {
+      const platilloId = req.params.id; // Obtener el ID del platillo desde los parámetros de la URL
+      const newData = req.body; // Datos actualizados del platillo
+  
+      const updatedPlatillo = await Menu.findByIdAndUpdate(platilloId, newData, { new: true });
+  
+      if (!updatedPlatillo) {
+        // Si el platillo no se encontró, devuelve un error 404
+        return res.status(404).json({ error: 'Platillo no encontrado' });
+      }
+  
+      // Si se actualizó con éxito, devuelve el platillo actualizado
+      res.status(200).json(updatedPlatillo);
+    } catch (error) {
+      // Si ocurre un error durante la actualización, devuelve un error 500
+      res.status(500).json({ error: 'Error al editar el platillo' });
+    }
+  };
+
+
+const   getMenusProfile = async (req, res) => {
+  
   try {
+    const menus= await Menu.find();
+    if (menus) {
+      return res
+        .status(200)
+        .json(menus);
+    }
 
   } catch (error) {
+    res.status(500).json({ error: 'Error al obtener los productos' });
   }
 
 };
@@ -70,6 +104,7 @@ const   deleteImage = async (req, res) => {
 export {
     hostImage,
     getMenus,
+    deleteSaucer,
     putImage,
-    deleteImage,
+    getMenusProfile
 };

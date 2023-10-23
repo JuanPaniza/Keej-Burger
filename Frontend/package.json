@@ -9,15 +9,31 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next/swc-darwin-arm64": "^13.5.5",
     "autoprefixer": "10.4.14",
+    "context": "^3.0.13",
+    "cookies": "^0.8.0",
+    "dotenv": "^16.3.1",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.11",
-    "formik": "^2.4.2",
+    "formik": "^2.4.5",
     "framer-motion": "^10.16.1",
-    "next": "13.4.11",
-    "postcss": "8.4.27",
+    "jose": "^4.15.4",
+    "js-cookie": "^3.0.5",
+    "next": "^13.5.5",
+    "node-jose": "^2.2.0",
+    "postcss": "^8.4.31",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "tailwindcss": "3.3.3"
-  }
+  },
+  "devDependencies": {
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
+  "main": "next.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

@@ -1,10 +1,11 @@
 "use client"
 
-
-import RecoverPassword from "@/components/form-login/RecoverPassword"
+import RecoverPassword from "../../../components/form-login/RecoverPassword"
 
 const  newPassword = ({params}) => {
   const {token } = params
+
+  console.log("hola desde nuevo password",params )
 
 
   return (

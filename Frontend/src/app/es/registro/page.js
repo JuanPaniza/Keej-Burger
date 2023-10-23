@@ -1,6 +1,6 @@
 "use client"
 
-import FormSingUp from "@/components/form-login/FormSingUp"
+import FormSingUp from "../../components/form-login/FormSingUp.jsx"
 
 
 const  registro = () => {

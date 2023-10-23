@@ -12,6 +12,7 @@ module.exports = {
     extend: {
       animation: {
         'slide-down': 'slide-down 0.5s ease-out',
+        'fade-out': 'fadeOut 0.3s ease-in forwards',
       },
       keyframes: {
         'slide-down': {

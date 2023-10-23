@@ -1,6 +1,6 @@
 
 
-import "@/app/globals.css"
+import "../globals.css"
 import Image from 'next/image'
 
 

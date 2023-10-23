@@ -1,13 +1,9 @@
 "use client";
-
-
 const home = () => {
   return (
     <>
-   <p className="h-screen flex justify-center w-full items-center">Hola desde Home</p>
-   
+      <div className="h-screen flex justify-center w-full items-center"></div>
     </>
   );
 };
-
 export default home;

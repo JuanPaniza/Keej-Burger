@@ -1,4 +1,5 @@
 import express from "express";
+import checkAuth from "../middleware/checkAuth.js";
 import {
     SingUp,
     authenticate,
@@ -21,7 +22,7 @@ router.post("/login", authenticate);
 router.get("/confirm/:token", confirm);    // hacemos  routing dinamico ej--> :token  :id :etc...
 router.post("/forget-password", forgetPassword);
 router.route("/forget-password/:token").get(checkToken).post(newPassword);
-router.get("/profile", profile);
+router.get("/profile",checkAuth, profile);
 
 
 export default router;
