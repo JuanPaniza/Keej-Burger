@@ -1,7 +1,7 @@
 "use client"
 
 
-import ForgetPassword from "@/components/form-login/ForgetPassword"
+import ForgetPassword from "../../components/form-login/ForgetPassword"
 
 
 

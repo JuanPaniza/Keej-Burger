@@ -139,6 +139,7 @@ const profile = async (req, res) => {
   const { user } = req;
 
   res.json(user);
+  console.log(user)
 };
 
 export {

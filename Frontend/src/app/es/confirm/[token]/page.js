@@ -1,10 +1,12 @@
 "use client"
 
 
-import Confirm from "@/components/form-login/Confirm"
+import Confirm from "../../../components/form-login/Confirm"
 
 const  newPassword = ({params}) => {
   const {token} = params
+
+  console.log(params)
 
 
   return (

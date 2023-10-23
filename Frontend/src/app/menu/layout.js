@@ -1,7 +1,4 @@
-import "@/app/globals.css"
-
-
-
+import "../globals.css"
 
 export const metadata = {
   title: 'KB | Menu',
@@ -11,8 +8,8 @@ export const metadata = {
 
 export default function MenuLayout({ children }) {
   return (
-    <div>
+    <>
       {children}
-    </div>
+    </>
   )
 }

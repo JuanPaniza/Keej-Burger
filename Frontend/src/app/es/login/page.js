@@ -1,11 +1,8 @@
 "use client"
-
-import FormSingIn from "@/components/form-login/FormSingIn"
+import FormSingIn from "../../components/form-login/FormSingIn"
 
 const  Login = () => {
-
   return (
-  
       <>
        <FormSingIn/>
       </>
