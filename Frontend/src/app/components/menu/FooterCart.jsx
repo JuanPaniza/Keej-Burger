@@ -31,7 +31,7 @@ function FooterCart({
             hanldeBtnCart();
           }}
           disabled={infoCart.length === 0}
-          className={`text-white  bg-orange-600  hover:bg-orange-700  focus:outline-none focus:ring-4 focus:ring-orange-300  font-medium rounded-2xl text-sm px-5 py-2.5 text-center  mb-2  w-full dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800 ${
+          className={`text-white  bg-GreenKeej  hover:bg-GreenKeej focus:outline-none focus:ring-4 focus:ring-GreenKeej  font-medium rounded-2xl text-sm px-5 py-2.5 text-center  mb-2  w-full dark:bg-GreenKeej dark:hover:bg-GreenKeej dark:focus:ring-GreenKeej ${
             infoCart.length === 0 && " bg-slate-300"
           }`}
         >

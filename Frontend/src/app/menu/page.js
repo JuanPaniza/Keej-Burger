@@ -138,7 +138,7 @@ const Menu = () => {
             />
           </div>
         )}
-        <div className=" bg-orange-200  h-full min-h-min  ">
+        <div className=" bg-cremKB h-full min-h-min  ">
           {displayMenu(clickSaucer)}
           {showModalOrder && (
             <ModalOrder
@@ -147,7 +147,7 @@ const Menu = () => {
             />
           )}
         </div>
-        <FooterMenu />
+        <FooterMenu/>
       </div>
     </>
   );

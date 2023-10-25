@@ -16,7 +16,7 @@ function MainMenu({setClickSaucer}) {
           <Image
             className="w-32 h-full lg:w-3/12 md:w-3/12 lg:h-full"
             alt="Logo KB"
-            src="/LOGOKB.png"
+            src="/LOGOKB1.png"
             width={300}
             height={300}
             priority

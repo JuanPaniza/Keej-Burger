@@ -48,7 +48,6 @@ function Products({
           setShowModalOrder={setShowModalOrder}
         />
       }
-
       {menus
         .filter((menu) => menu.category === clickSaucer)
         .map((menu, index) => (
@@ -59,14 +58,14 @@ function Products({
           >
             <div className=" relative w-full ">
               <div className="h-full scroll-m-4 grid justify-center w-full ">
-                <div className=" flex justify-center lg:w-2/3 lg:ml-64 px-3 ">
+                <div className=" flex justify-center w-screen  px-3 ">
                   <button
                     onClick={() => handleOpenModal(menu._id)}
                     type="button"
                     className="p-5 shadow-md rounded-3xl bg-white mb-2"
                   >
                     <div className="flex items-center">
-                      <div className="lg:w-5/12 w-4/12 xl:w-3/12">
+                      <div className="lg:w-5/12 h-auto w-4/12 xl:w-3/12">
                         <Image
                           className="rounded-md hover:scale-125 transition-all"
                           src={menu.image}
@@ -112,5 +111,4 @@ function Products({
     </div>
   );
 }
-
 export default Products;

@@ -19,7 +19,6 @@ const hostImage = async (req, res) => {
     console.log(menu)
 
     menu.image = imageUrl;
-    console.log(menu)
     await menu.save();
     res.json({
      msg: "Patillo Creado Correctamente.",
@@ -44,11 +43,11 @@ const getMenus = async (req, res) => {
 
 const deleteSaucer = async (req, res) => {
   try {
-    const platilloId = req.params.id; // Obtener el ID del platillo desde los parámetros de la URL
+    const saucerId = req.params.id; // Obtener el ID del platillo desde los parámetros de la URL
 
-    const deletedPlatillo = await Menu.findByIdAndDelete(platilloId); // Buscar y eliminar el platillo por su ID
+    const deletedSaucer = await Menu.findByIdAndDelete(saucerId); // Buscar y eliminar el platillo por su ID
 
-    if (!deletedPlatillo) {
+    if (!deletedSaucer) {
       // Si el platillo no se encontró, devuelve un error 404
       return res.status(404).json({ error: 'Platillo no encontrado' });
     }
@@ -65,18 +64,18 @@ const deleteSaucer = async (req, res) => {
 
 const putImage = async (req, res) => {
     try {
-      const platilloId = req.params.id; // Obtener el ID del platillo desde los parámetros de la URL
+      const saucerId = req.params.id; // Obtener el ID del platillo desde los parámetros de la URL
       const newData = req.body; // Datos actualizados del platillo
   
-      const updatedPlatillo = await Menu.findByIdAndUpdate(platilloId, newData, { new: true });
+      const updatedSaucer = await Menu.findByIdAndUpdate(saucerId, newData, { new: true });
   
-      if (!updatedPlatillo) {
+      if (!updatedSaucer) {
         // Si el platillo no se encontró, devuelve un error 404
         return res.status(404).json({ error: 'Platillo no encontrado' });
       }
   
       // Si se actualizó con éxito, devuelve el platillo actualizado
-      res.status(200).json(updatedPlatillo);
+      res.status(200).json(updatedSaucer);
     } catch (error) {
       // Si ocurre un error durante la actualización, devuelve un error 500
       res.status(500).json({ error: 'Error al editar el platillo' });

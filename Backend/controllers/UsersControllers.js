@@ -6,13 +6,11 @@ const SingUp = async (req, res) => {
   // Evitar registros duplicados
   const { email } = req.body;
   const existsUser = await User.findOne({ email }); // esto busca si ya existe el email
-
   if (existsUser) {
     return res
       .status(400)
       .json({ msg: "Este correo electrónico ya está conectado a una cuenta." });
   }
-
   try {
     const user = new User(req.body);
     user.token = generateId();
@@ -29,7 +27,6 @@ const SingUp = async (req, res) => {
     });
   } catch (error) {}
 };
-
 const authenticate = async (req, res) => {
   const { email, password } = req.body;
 
@@ -39,13 +36,16 @@ const authenticate = async (req, res) => {
       .status(404)
       .json({ msg: "Este correo electrónico no está conectado a una cuenta." });
   }
-
   if (!user.confirm) {
     return res
       .status(403)
       .json({ msg: "Esta cuenta no ha sido confirmada." });
   }
-
+  if (user.role !== "admin") {
+    return res
+      .status(402)
+      .json({ msg: "Esta cuenta no esta autorizada" });
+  }
   // Confirmar si el password es correcto
   if (await user.checkPassword(password)) {
     res.json({
@@ -75,36 +75,27 @@ const confirm = async (req, res) => {
     userConfirm.token = "";
     await userConfirm.save();
     res.json({ msg: "Usuario Confirmado Correctamente." });
-    
-  } catch (error) {
-    console.log(error)
-  }
+  } catch (error) {}
 };
 const forgetPassword = async (req, res) => {
   const { email} = req.body;
-
   const user = await User.findOne({ email });
   if (!user) {
     return res
       .status(404)
-      .json({ msg: "Este correo electrónico no está conectado a una cuenta." });
-  }
-
+      .json({ msg: "Este correo electrónico no está conectado a una cuenta." });}
   try {
     user.token = generateId();
     await user.save();
-
     // Enviar el email
     emailForgetPassword ({
       email: user.email,
       name: user.name,
       token: user.token,
     });
-    
     res.json({ msg: "Hemos enviado un email con las instrucciones" });
   } catch (error) {
   }
-
 };
 const checkToken = async (req, res) => {
   const { token } = req.params;
@@ -128,18 +119,14 @@ const newPassword = async (req, res) => {
     try {
       await user.save();
       res.json({ msg: "Contraseña modificada correctamente." });
-    } catch (error) {
-
-    }
+    } catch (error) {}
   } else {
     return res.status(404).json({ msg: "Token no válido" });
   }
 };
 const profile = async (req, res) => {
   const { user } = req;
-
   res.json(user);
-  console.log(user)
 };
 
 export {

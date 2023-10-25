@@ -26,6 +26,11 @@ const usersSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    role: {
+      type: String,
+      default: "user",
+
+    },
   },
   {
     timestamps: true, //- para crear 2 columnas una de creado otra de actualizado

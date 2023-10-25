@@ -70,14 +70,14 @@ export default function ModalMenu({
             </svg>
           </button>
           <div className=" lg:flex lg:items-center">
-            <Image
+           <div className=" h-auto w-auto"> <Image
               className=" my-4 mr-10 "
               src={image}
               alt=" imagen platillo "
               width={320}
               height={320}
               priority
-            />
+            /></div>
 
             <div>
               <h2 className="text-2xl font-bold mb-4 uppercase">{name}</h2>

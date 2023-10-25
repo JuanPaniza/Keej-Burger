@@ -1,9 +1,11 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 function HeaderMenu({ setClickSaucer}) {
   return (
-    <div className=" fixed z-40 w-full top-0 lg:flex-row flex flex-col items-center gap-16 lg:gap-0 pt-8  lg:justify-around lg:pt-4 bg-orange-600 shadow-xl">
-      <button
+    <nav className=" fixed z-40 w-full top-0 lg:flex-row flex flex-col items-center gap-16 lg:gap-0 pt-8  lg:justify-around lg:pt-4 bg-rojoKB shadow-xl">
+      <Link
+        href="#"
         onClick={() => setClickSaucer("menu-main")}
         className=" mb-5"
       >
@@ -15,11 +17,11 @@ function HeaderMenu({ setClickSaucer}) {
           height={100}
           priority
         />
-      </button>
+      </Link>
       <div className=" flex items-center gap-3 mb-5">
  
-          <button
-            onClick={() => setClickSaucer("hamburguesas")}
+          <Link
+            href="#" onClick={() => setClickSaucer("hamburguesas")}
           >
             <Image
               className="rounded-md"
@@ -29,11 +31,11 @@ function HeaderMenu({ setClickSaucer}) {
               height={30}
               priority
             />
-          </button>
+          </Link>
       
         
 
-        <button onClick={() => setClickSaucer("picadas")}>
+        <Link href="#" onClick={() => setClickSaucer("picadas")}>
           <Image
             className="rounded-md"
             src="/papas-fritas.png"
@@ -42,8 +44,8 @@ function HeaderMenu({ setClickSaucer}) {
             height={30}
             priority
           />
-        </button>
-        <button onClick={() => setClickSaucer("perros")}>
+        </Link>
+        <Link href="#" onClick={() => setClickSaucer("perros")}>
           <Image
             className="rounded-md"
             src="/hot-dog.png"
@@ -52,8 +54,8 @@ function HeaderMenu({ setClickSaucer}) {
             height={30}
             priority
           />
-        </button>
-        <button onClick={() => setClickSaucer("bebida")}>
+        </Link>
+        <Link href="#" onClick={() => setClickSaucer("bebida")}>
           <Image
             className="rounded-md"
             src="/soda.png"
@@ -62,9 +64,9 @@ function HeaderMenu({ setClickSaucer}) {
             height={30}
             priority
           />
-        </button>
+        </Link>
       </div>
-    </div>
+    </nav>
   );
 }
 
