@@ -9,7 +9,7 @@ export default function ProfileLayout({ children }) {
   return (
     <div className="lg:flex">
       <HeaderAdmin />
-      <div className=" bg-container">{children}</div>
+      <div className=" bg-container bg-rojoKB">{children}</div>
     </div>
   );
 }

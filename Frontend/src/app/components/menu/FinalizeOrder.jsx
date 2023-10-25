@@ -10,7 +10,7 @@ function FinalizeOrder({ fetchSendOrder, infoCart, setInfoCart }) {
   return (
     <div className="mx-auto max-w-screen-xl  px-4 py-16 sm:px-6 lg:px-8 lg:mt-24  mt-60 ">
       <div className="mx-auto max-w-lg bg-white rounded-lg">
-        <p className="mx-auto pt-10 px-5 max-w-md text-center text-green-500 ">
+        <p className="mx-auto pt-10 px-5 max-w-md text-center text-GreenKeej ">
           Para finalizar con exito su pedido porfavor ingrese los siguientes
           datos
         </p>
@@ -54,7 +54,7 @@ function FinalizeOrder({ fetchSendOrder, infoCart, setInfoCart }) {
 
           <button
             type="submit"
-            className="block w-full rounded-lg bg-green-600 px-5 py-3 text-sm font-medium text-white"
+            className="block w-full rounded-lg bg-GreenKeej px-5 py-3 text-sm font-medium text-white"
           >
             Realizar Pedido
           </button>

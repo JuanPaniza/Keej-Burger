@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-
 const menuFuntion = () => {
   const router = useRouter();
   const [menus, setMenus] = useState([]);
@@ -36,7 +35,6 @@ const menuFuntion = () => {
     };
     fetchMenus();
   }, []);
-
   const deleteSaucer = async (id) => {
     const response = await fetch(
       `http://localhost:8080/api/menu/deleteMenu/${id}`,
@@ -60,7 +58,7 @@ const menuFuntion = () => {
   return (
     <div>
      <div className="grid justify-center w-full mt-20">
-        <h2 className="font-bold text-3xl text-yellow-700 mb-4 text-center">
+        <h2 className="font-bold text-3xl text-white mb-4 text-center">
           Menus
         </h2>
         {menus.map((menu, index) => (
@@ -70,13 +68,13 @@ const menuFuntion = () => {
             style={{ transitionDelay: `${index * 0.1}s` }}
           >
             <div className="flex justify-center lg:w-2/3 lg:ml-64  px-3 mb-4">
-              <div className="p-5 shadow-md rounded-3xl bg-white">
-                <div className="lg:flex">
-                  <div className="lg:w-5/12 xl:w-3/12">
+              <div className="p-5 shadow-md rounded-3xl bg-white lg:w-2/3 ">
+                <div className="lg:flex w-full h-full justify-center items-center">
+                  <div className="lg:w-5/12 xl:w-3/12 h-2/3 w-3/4 ">
                     <Image
-                      className="rounded-md"
+                      className="rounded-md "
                       src={menu.image}
-                      alt=" imagen platillo "
+                      alt="imagen platillo "
                       width={320}
                       height={320}
                       priority

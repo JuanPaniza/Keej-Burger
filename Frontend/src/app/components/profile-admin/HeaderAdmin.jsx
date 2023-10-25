@@ -13,14 +13,14 @@ function HeaderAdmin() {
   return (
     <>
       <div className="lg:w-1/4 lg:h-screen">
-        <div className="bg-orange-100 lg:block rounded-b-full  lg:rounded-none lg:h-screen shadow-2xl lg:fixed lg:w-1/4">
+        <div className="bg-cremKB lg:block   lg:rounded-none lg:h-screen shadow-2xl lg:fixed lg:w-1/4">
           <div className="flex flex-col items-center gap-20 lg:gap-5 lg:h-screen  justify-around ">
             
             <div className= "flex items-center w-full justify-around " >
               <Image
                 className="my-4 h-12 w-20 lg:h-20  lg:w-32 "
-                alt="Logo-BK"
-                src="/LOGOKB.png"
+                alt="Logo-BK1"
+                src="/LOGOKB1.png"
                 width={50}
                 height={50}
                 priority

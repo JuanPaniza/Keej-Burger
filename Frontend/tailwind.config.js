@@ -29,6 +29,8 @@ module.exports = {
         GreenKeej: '#74ad1e',
         "GreenKeej-100": '#6da01b',
         BeigeKeej: '#f7eccd',
+        rojoKB:"#ae1722",
+        cremKB:"#faf0d7"
       },
     },
   },

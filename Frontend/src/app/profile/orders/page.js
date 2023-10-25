@@ -57,12 +57,12 @@ const orders = () => {
   return (
     <>
       <div className="grid justify-center w-full mt-20">
-        <h2 className="font-bold text-3xl text-yellow-700 mb-4 text-center">
+        <h2 className="font-bold text-3xl text-white mb-4 text-center">
           Ordenes
         </h2>
         {orders.map((order) => (
           <div key={order._id}>
-            <div className="flex justify-center lg:w-2/3 lg:ml-64  px-3 mb-4">
+            <div className="flex justify-center lg:w-1/2 lg:ml-64  px-3 mb-4">
               <div className="p-5 shadow-md rounded-3xl bg-white">
                 <div className="text-gray-700 font-bold mb-6">
                   Order: <span className=" text-yellow-600">{order._id}</span>
@@ -87,9 +87,9 @@ const orders = () => {
                 {order.products.map((product) => (
                   <div key={product.name}>
                     <div className="lg:flex">
-                      <div className="lg:w-5/12 xl:w-3/12">
+                      <div className="lg:w-5/12 w-3/6 h-3/6 xl:w-3/12">
                         <Image
-                          className="rounded-md w-3/6 h-3/6"
+                          className="rounded-md "
                           src={product.image}
                           alt=" imagen platillo "
                           width={320}

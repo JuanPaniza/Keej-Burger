@@ -3,7 +3,7 @@ import Link from "next/link";
 
 function FooterMenu() {
   return (
-    <footer className=" relative bg-orange-600 lg:grid lg:grid-cols-5">
+    <footer className=" relative bg-rojoKB lg:grid lg:grid-cols-5">
       <div className="relative block h-40  lg:col-span-2 lg:h-full">
         <Image
           className="  absolute inset-0 h-full w-full  object-cover bg-bottom "
