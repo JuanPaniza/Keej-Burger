@@ -32,13 +32,15 @@ Desarrollo Ágil: Experimenté cómo la agilidad en el desarrollo es crucial par
 
 ## Vista previa del proyecto
 Si quieres hechas un vistazo al proyecto, te recomiendo:
+![Captura de pantalla 2023-10-26 a la(s) 12 25 26 a m](https://github.com/JuanPaniza/Keej-Burger/assets/138939235/c2c81d91-37c7-4555-b5ee-6b2436ec6699)
+![Captura de pantalla 2023-10-26 a la(s) 2 28 40 a  m](https://github.com/JuanPaniza/Keej-Burger/assets/138939235/6c32e12c-5d49-4e0a-b73d-5850f0313523)
+![Captura de pantalla 2023-10-26 a la(s) 2 29 00 a  m](https://github.com/JuanPaniza/Keej-Burger/assets/138939235/cc0c0124-f9cf-40a3-a54e-49b4017828ae)
+![Captura de pantalla 2023-10-26 a la(s) 2 27 22 a  m](https://github.com/JuanPaniza/Keej-Burger/assets/138939235/af1fb1f4-2715-495b-ba00-72a245661c59)
+![Captura de pantalla 2023-10-26 a la(s) 2 27 56 a  m](https://github.com/JuanPaniza/Keej-Burger/assets/138939235/26fdb31a-5375-464b-bfe7-cae5e948abac)
 
-<img width="1438" alt="Captura de pantalla 2023-10-26 a la(s) 12 25 26 a m" src="https://github.com/JuanPaniza/Keej-Burger/assets/138939235/6ad412cd-b66c-4779-a312-4adc8a519eb1">
-<img width="1423" alt="Captura de pantalla 2023-10-26 a la(s) 2 29 00 a  m" src="https://github.com/JuanPaniza/Keej-Burger/assets/138939235/8d56cdcb-41f0-437c-b686-696a919c95f7">
-<img width="1435" alt="Captura de pantalla 2023-10-26 a la(s) 2 28 40 a  m" src="https://github.com/JuanPaniza/Keej-Burger/assets/138939235/89408519-a942-42b4-b154-af12d40da79b">
 
-<img width="1410" alt="Captura de pantalla 2023-10-26 a la(s) 2 27 22 a  m" src="https://github.com/JuanPaniza/Keej-Burger/assets/138939235/642d3cd8-cf33-410a-97f1-c14da9753cda">
-<img width="1401" alt="Captura de pantalla 2023-10-26 a la(s) 2 27 56 a  m" src="https://github.com/JuanPaniza/Keej-Burger/assets/138939235/9729e823-54b9-4120-a540-50e8bf7c35b1">
+
+
 
 
 ## Autor ✒️
