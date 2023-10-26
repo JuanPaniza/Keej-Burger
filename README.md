@@ -1,6 +1,6 @@
 # Keej Burguer
+![Captura de pantalla 2023-10-26 a la(s) 2 26 41 a  m](https://github.com/JuanPaniza/Keej-Burger/assets/138939235/4abd91ad-c054-448b-b378-8f3f832481da)
 
-<img width="1415" alt="Captura de pantalla 2023-10-26 a la(s) 2 26 41 a  m" src="https://github.com/JuanPaniza/Keej-Burger/assets/138939235/678dfe3a-4fe5-440e-8b03-3f3d676d2a1b">
 
 ## Ejemplo en vivo
 - [URL-de-github-pages-de-este-proyecto](URL-de-github-pages-de-este-proyecto)
