@@ -14,7 +14,8 @@ const addProducts = () => {
   let saucerParsed = {};
 
   const searchParams = useSearchParams();
-  const saucer = searchParams.get("plato");
+  const saucer = searchParams.get("product");
+  
   if (saucer) {
     try {
       saucerParsed = JSON.parse(decodeURIComponent(saucer));
@@ -142,7 +143,7 @@ const addProducts = () => {
                 />
               </div>
             )}
-            <div className="w-full mx-8  max-w-3xl">
+            <div className="w-full mx-8 max-w-3xl">
          
                 <Form className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8 bg-white">
                   <h2 className=" uppercase text-3xl font-bold  text-amber-700 lg:mt-0 mt-10  mb-4 text-center">
@@ -155,14 +156,13 @@ const addProducts = () => {
                     >
                       Nombre
                     </label>
-                    <input
+                    <Field
                       className="shadow appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                       name="name"
                       id="nameId"
                       type="text"
-                      placeholder="Nombre Platillo"
-                      onChange={handleChange}
-                  
+                      value={saucerParsed.name}
+                      placeholder="Nombre Platillo"      
                     />
                   </div>
 
@@ -173,14 +173,14 @@ const addProducts = () => {
                     >
                       Precio
                     </label>
-                    <input
+                    <Field
                       className="shadow appearance-none border rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                       name="price"
                       id="priceid"
                       type="number"
+                      value={saucerParsed.price}
                       placeholder="$0"
                       min="0"
-                      onChange={handleChange}
                     />
                   </div>
 
