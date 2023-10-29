@@ -50,6 +50,4 @@ Si quieres hechas un vistazo al proyecto, te recomiendo:
 * [LinkedIn](https://www.linkedin.com/in/juanpaniza)
 
 
-## Instalación 
-Este proyecto no necesita de instalación. Simplemente abre la carpeta o haz doble click en el .html
   
