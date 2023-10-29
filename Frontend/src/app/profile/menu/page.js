@@ -53,7 +53,7 @@ const menuFuntion = () => {
   };
   const btnUpdateSaucer = (menu) => {
     const saucers = JSON.stringify(menu);
-    router.push(`/profile/producto?plato=${saucers}`);
+    router.push(`/profile/product?product=${saucers}`);
   };
   return (
     <div>
@@ -67,10 +67,10 @@ const menuFuntion = () => {
             className={`menu-item ${showMenus ? "show" : ""}`}
             style={{ transitionDelay: `${index * 0.1}s` }}
           >
-            <div className="flex justify-center lg:w-2/3 lg:ml-64  px-3 mb-4">
-              <div className="p-5 shadow-md rounded-3xl bg-white lg:w-2/3 ">
+            <div className="flex justify-center  lg:w-2/3 lg:ml-64  px-3 mb-4">
+              <div className="p-5 shadow-md rounded-3xl bg-white  h-full  lg:w-10/12 ">
                 <div className="lg:flex w-full h-full justify-center items-center">
-                  <div className="lg:w-5/12 xl:w-3/12 h-2/3 w-3/4 ">
+                  <div className="lg:w-5/12 xl:h-3/12 h-2/3 w-3/4 ">
                     <Image
                       className="rounded-md "
                       src={menu.image}
